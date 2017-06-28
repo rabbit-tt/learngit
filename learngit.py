@@ -10,7 +10,7 @@ git status
 git diff learngit.py
 git diff HEAD -- learngit.py  #查看工作区版本和版本库中文件区别
 #查看git日志
-git log [--pretty=oneline]
+git log #[--pretty=oneline]只显示一行[--graph]开头字符显示分支变化情况[--abbrve-commit]只显示版本号的前几位
 #回退git版本
 git reset --hard HEAD^  #上一个版本是HEAD^,上上个版本是HEAD^^,上100个版本HEAD~100
 #查看git操作历史
@@ -37,4 +37,6 @@ git checkout master #切换回master分支
 git merge dev #将dev分支合并至当前分支
 git branch -d dev #合并完成后删除dev分支
 #当需要merge的分支与master分支冲突时,需要手动打开文件,修改冲突后再add commit
+git merge --no-ff -m "merge with no-ff" dev#使用--no-ff模式保留合并分支时的信息
+
 
