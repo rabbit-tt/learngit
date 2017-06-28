@@ -36,3 +36,4 @@ git remote -v #查看远程分支
 git checkout master #切换回master分支
 git merge dev #将dev分支合并至当前分支
 git branch -d dev #合并完成后删除dev分支
+#需要手动修改冲突后再add commit
