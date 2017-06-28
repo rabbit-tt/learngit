@@ -28,3 +28,11 @@ ssh-keygen -t rsa -C "youremail@example.com" #在主目录下生成.ssh与公私
 git remote add origin git@github.com:USERNAME/REPONAME.git#add repo后将本地关联到远程仓库
 git push -u origin master#首次推送使用-u，将本地分支推送至远程，并将本地master与远程master关联起来
 git push origin master #推送最新修改
+
+#分支管理
+git checkout -b dev #创建并切换至dev分支(= git branch dev + git checkout dev)
+git branch #查看当前分支
+git remote -v #查看远程分支
+git checkout master #切换回master分支
+git merge dev #将dev分支合并至当前分支
+git branch -d dev #合并完成后删除dev分支
