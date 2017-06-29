@@ -71,4 +71,29 @@ git tag <name> <commit_id> #不填写commit_id默认使用当前最新版本打t
 git tag  #查看所有tag （列出的tag按字母排序）
 git show <name> #查看tag具体信息
 git tag -a <name>  -m <message> <commit_id>  #-a可以指定标签信息
-git tag -s <name>  -m <message> <commit_id>  #-s可以用PGP签名标签
+git tag -s <name>  -m <message> <commit_id>  #-s可以用PGP签名标签(做不到)
+#删tag 与 推送tag
+git tag -d v0.1  #删除本地tag v0.1
+git push origin v0.1 #推送tag v0.100
+git push origin --tags #一次性推送所有tag
+git push origin :refs/tags/v0.1 #删除本地tag后操作，将远程tag也删除
+
+#自定义Git
+#建.gitignore文件，写入需要被忽略的文件 参考：https://github.com/github/gitignore
+git add -f learngit.py  #强制添加被忽略的文件
+git check-ignore -v learngit.py #检查learngit.py被忽略的原因
+git config --global alias.st status #使用st代替status
+git config --global alias.unstage 'reset HEAD'  #使用unstage代替reset HEAD
+git config --global alias.lg "log --color --graph --pretty=foramt:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrve-commit"
+#git的设置存放在.git/config中，全局设置则放在主目录下的.gitconfig中
+
+#搭建git服务器
+sudo apt-get install git #通过apt-get安装git
+sudo adduser git #新增用户git，以运行git服务
+#将所有用户的公钥id_rsa.pub 导入/home/git/.ssh/authorized_keys，一行一个
+sudo git init --bare sample.git #在/srv目录下初始化一个git裸仓库sample.git，用户无法登录服务器更改裸仓库，将owner改为git
+#安全性方面 禁用shell登录，将/etc/passwd 中"git:x:1001:1001:,,,:/home/git:/bin/bash"改为"git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell"
+git clone git@sercer:/srv/sample.git #可以通过git clone 克隆远程仓库了
+#管理公钥可使用Gitosis,严格权限控制可使用Gitolite
+
+#注，git官网：http://git-scm.com
